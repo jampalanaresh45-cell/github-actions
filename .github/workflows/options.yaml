@@ -1,0 +1,16 @@
+name: Timeout Example
+
+on: [push]
+  
+
+jobs:
+  demo-timeout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5   # ⏱️ Job will stop after 5 minutes
+
+    steps:
+      - name: Run a sample command
+        run: echo "This job will timeout in 10 minutes if not completed"
+
+      - name: Simulate long running task
+        run: sleep 600   # 600 seconds (~6.6 minutes) → will hit timeout
