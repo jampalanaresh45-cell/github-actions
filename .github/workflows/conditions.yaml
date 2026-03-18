@@ -11,3 +11,7 @@ jobs: ##it can contain multiple jobs
       - name: trigger PROD deploy
         if: ${{ github.ref == 'refs/heads/main' }}
         run: echo "Deploy to PROD"
+
+      - name: trigger DEV deploy
+        if: ${{ github.ref == 'refs/heads/feature-*' }}
+        run: echo "Deploy to DEV"
