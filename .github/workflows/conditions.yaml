@@ -1,0 +1,13 @@
+name: conditions ##work flow 
+on: [push] ##event
+jobs: ##it can contain multiple jobs
+  hello: ##job name
+    runs-on: ubuntu-latest ##where to run
+
+    steps:
+      - name: Print Hello World
+        run: echo "Hello, World!"
+
+      - name: trigger PROD deploy
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: echo "Deploy to PROD"
