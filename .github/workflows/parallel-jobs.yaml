@@ -1,0 +1,26 @@
+name: Parallel ##work flow 
+on: [push] ##event
+jobs: ##it can contain multiple jobs
+ job-1: 
+    runs-on: ubuntu-latest ##where to run
+    steps:
+      - name: Print Hello World
+        run: sleep 20
+
+ job-2: 
+    runs-on: ubuntu-latest ##where to run
+    steps:
+      - name: Print Hello World
+        run: sleep 20
+
+ job-3: 
+    runs-on: ubuntu-latest ##where to run
+    steps:
+      - name: Print Hello World
+        run: sleep 20
+
+ job-4: 
+    runs-on: ubuntu-latest ##where to run
+    steps:
+      - name: Print Hello World
+        run: sleep 20
