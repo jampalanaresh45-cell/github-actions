@@ -1,7 +1,9 @@
 name: Timeout Example
 
 on: [push]
-  
+concurrency:
+   group: ${{ github.repository }}-{{ github.ref }}
+   cancel-in-progress: true ## It will cancel the running one and pick up new one
 
 jobs:
   demo-timeout:
