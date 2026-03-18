@@ -1,0 +1,36 @@
+name: Job Status Handling
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check out
+        run: echo "Cloning repo"
+
+      - name: Run build (Fail intentionally)
+        run: exit 1 ## simulate failure
+
+  post-actions:
+    runs-on: ubuntu-latest
+    needs: build   # depends on previous job
+    if: always()   # ensures this job always runs
+
+    steps:
+      - name: Job Success
+        if: ${{ needs.build.result == 'success' }}
+        run: echo "Build succeeded ✅"
+
+      - name: Job Failure
+        if: ${{ needs.build.result == 'failure' }}
+        run: echo "Build failed ❌"
+
+      - name: Job Cancelled
+        if: ${{ needs.build.result == 'cancelled' }}
+        run: echo "Build cancelled ⚠️"
+
+      - name: Always Run
+        run: echo "This runs always (like Jenkins post always)"
